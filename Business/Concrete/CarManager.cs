@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
@@ -83,6 +84,19 @@ namespace Business.Concrete
 
             _carDal.Update(car);
             return new SuccessResult();
+        }
+        [CacheAspect]
+        public IDataResult<List<CarDetailDto>> GetCarsByBrandAndColor(int brandId, int colorId)
+        {
+            List<CarDetailDto> car = (_carDal.GetCarDetails(c => c.BrandId == brandId && c.ColorId == colorId));
+
+            if (car == null)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>(Messages.NoCar);
+            }
+
+            return new SuccessDataResult<List<CarDetailDto>>(car);
+
         }
     }
 }
