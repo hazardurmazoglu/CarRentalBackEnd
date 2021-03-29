@@ -70,11 +70,17 @@ namespace Core.Utilities.Helpers
             var newPath = Guid.NewGuid() + fileExtension;
 
 
-            string path = Environment.CurrentDirectory + @"\wwwroot\uploads";
+            //string path = Environment.CurrentDirectory + @"\wwwroot\uploads";
+
+            //string result = $@"{path}\{newPath}";
+
+            //return (result, $"\\uploads\\{newPath}");
+
+            string path = @"C:\kamp-frontend\carrental\src\assets\images";
 
             string result = $@"{path}\{newPath}";
 
-            return (result, $"\\uploads\\{newPath}");
+            return (result, $"\\images\\{newPath}");
         }
     }
 }
