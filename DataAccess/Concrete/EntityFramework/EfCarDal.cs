@@ -19,9 +19,6 @@ namespace DataAccess.Concrete.EntityFramework
                              join color in context.Colors
                                 on car.ColorId equals color.ColorId
 
-                             join carImage in context.CarImages
-                                on car.CarId equals carImage.CarId
-
                              join brand in context.Brands
                                 on car.BrandId equals brand.BrandId
 
@@ -31,7 +28,6 @@ namespace DataAccess.Concrete.EntityFramework
                                  Description = car.Description,
                                  BrandId = brand.BrandId,
                                  BrandName = brand.BrandName,
-                                 ImagePath = carImage.ImagePath,
                                  ColorId = color.ColorId,
                                  ColorName = color.ColorName,
                                  DailyPrice = car.DailyPrice,
@@ -50,8 +46,6 @@ namespace DataAccess.Concrete.EntityFramework
                              join color in context.Colors
                              on car.ColorId equals color.ColorId
 
-                             join carImage in context.CarImages
-                                on car.CarId equals carImage.CarId
 
                              join brand in context.Brands
                              on car.BrandId equals brand.BrandId
@@ -62,7 +56,6 @@ namespace DataAccess.Concrete.EntityFramework
                                  BrandId = brand.BrandId,
                                  ColorId = color.ColorId,
                                  BrandName = brand.BrandName,
-                                 ImagePath = carImage.ImagePath,
                                  ColorName = color.ColorName,
                                  DailyPrice = car.DailyPrice,
                                  Description = car.Description,
