@@ -33,5 +33,35 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+
+        public RentalDetailDto GetRentalDetails(int rentalId)
+        {
+            using (CarRentalContext context = new CarRentalContext())
+            {
+                var result = from rental in context.Rentals.Where(r => r.RentalId == rentalId)
+
+                             join car in context.Cars
+                                 on rental.CarId equals car.CarId
+
+                             join user in context.Users
+                                 on rental.UserId equals user.Id
+
+                             join brand in context.Brands
+                             on car.BrandId equals brand.BrandId
+
+                             select new RentalDetailDto
+                             {
+                                 RentalId = rental.RentalId,
+                                 CarId = car.CarId,
+                                 BrandName = brand.BrandName,
+                                 UserName = user.FirstName + " " + user.LastName,
+                                 RentDate = rental.RentDate,
+                                 ReturnDate = rental.ReturnDate
+                             };
+
+                return result.SingleOrDefault();
+            }
+        }
     }
 }
+
