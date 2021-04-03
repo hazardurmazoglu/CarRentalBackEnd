@@ -18,5 +18,6 @@ namespace Business.Constants
         public static string AccessTokenCreated = "Welcome";
         public static string CarImageLimitExceeded = "Car image limit exceeded.";
         public static string NoCar = "There is no car.";
+        public static string CardExist= "Card already exists.";
     }
 }
