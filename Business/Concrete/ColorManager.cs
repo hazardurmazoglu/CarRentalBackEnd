@@ -17,14 +17,14 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
         [CacheRemoveAspect("IColorService.Get")]
-        [SecuredOperation("secretary,admin")]
+        //[SecuredOperation("secretary,admin")]
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
             return new SuccessResult();
         }
         [CacheRemoveAspect("IColorService.Get")]
-        [SecuredOperation("secretary,admin")]
+        //[SecuredOperation("secretary,admin")]
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
@@ -41,7 +41,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
         }
         [CacheRemoveAspect("IColorService.Get")]
-        [SecuredOperation("secretary,admin")]
+        //[SecuredOperation("secretary,admin")]
         public IResult Update(Color color)
         {
             _colorDal.Update(color);

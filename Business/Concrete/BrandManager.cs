@@ -19,7 +19,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("IBrandService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
@@ -27,7 +27,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("IBrandService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
@@ -47,7 +47,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("IBrandService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
