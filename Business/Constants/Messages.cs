@@ -19,5 +19,7 @@ namespace Business.Constants
         public static string CarImageLimitExceeded = "Car image limit exceeded.";
         public static string NoCar = "There is no car.";
         public static string CardExist= "Card already exists.";
+        public static string NotCarAvailable = "Car is not available.";
+        public static string NotEnough = "Your findex score is not enough." ;
     }
 }

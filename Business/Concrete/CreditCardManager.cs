@@ -43,7 +43,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [CacheAspect]
         public IDataResult<List<CreditCard>> GetAll()
         {
