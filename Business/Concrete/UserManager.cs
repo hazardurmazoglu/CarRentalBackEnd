@@ -57,5 +57,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
+
+        public IDataResult<List<OperationClaim>> GetUserClaims(int id)
+        {
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetUserClaims(id));
+        }
     }
 }

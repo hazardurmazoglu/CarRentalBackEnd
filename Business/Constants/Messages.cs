@@ -21,5 +21,6 @@ namespace Business.Constants
         public static string CardExist= "Card already exists.";
         public static string NotCarAvailable = "Car is not available.";
         public static string NotEnough = "Your findex score is not enough." ;
+        public static string RentalNotAvailable = "Car is not available.";
     }
 }

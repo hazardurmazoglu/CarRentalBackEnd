@@ -97,5 +97,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getuserclaims")]
+        public IActionResult GetUserClaims(int id)
+        {
+            var result = _userService.GetUserClaims(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
     }
 }

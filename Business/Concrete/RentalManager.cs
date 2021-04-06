@@ -11,6 +11,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Business.Concrete
@@ -83,13 +84,14 @@ namespace Business.Concrete
 
         private IResult CheckCarAvailable(Rental rental)
         {
-            var result =
-                _rentalDal.Get(r => (r.CarId == rental.CarId && r.ReturnDate == null)
-            || (r.RentDate >= rental.RentDate && r.ReturnDate >= rental.RentDate));
+            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId);
 
-            if (result != null)
+            if (result.Any(r =>
+                r.ReturnDate >= rental.RentDate &&
+                r.RentDate <= rental.ReturnDate
+            ))
             {
-                return new ErrorResult(Messages.NotCarAvailable);
+                return new ErrorResult(Messages.RentalNotAvailable);
             }
 
             return new SuccessResult();
