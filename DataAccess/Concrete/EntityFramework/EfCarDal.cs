@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (CarRentalContext context = new CarRentalContext())
             {
-                var result = from car in context.Cars 
+                var result = from car in context.Cars
                              join color in context.Colors
                                 on car.ColorId equals color.ColorId
 
@@ -32,7 +32,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = color.ColorName,
                                  DailyPrice = car.DailyPrice,
                                  ModelYear = car.ModelYear,
-                                 MinFindexScore = car.MinFindexScore
+                                 MinFindexScore = car.MinFindexScore,
+                                 PreviewPath = car.PreviewPath
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
@@ -61,7 +62,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  DailyPrice = car.DailyPrice,
                                  Description = car.Description,
                                  ModelYear = car.ModelYear,
-                                 MinFindexScore = car.MinFindexScore
+                                 MinFindexScore = car.MinFindexScore,
+                                 PreviewPath = car.PreviewPath
 
 
                              };
@@ -69,6 +71,7 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.SingleOrDefault();
             }
         }
+
     }
 
 

@@ -5,10 +5,12 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
+using Core.Utilities.Helpers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -99,6 +101,14 @@ namespace Business.Concrete
 
             return new SuccessDataResult<List<CarDetailDto>>(car);
 
+        }
+        [CacheRemoveAspect("ICarService.Get")]
+        public IResult AddPreviewPhoto(IFormFile file, Car car)
+        {
+         
+            car.PreviewPath = FileHelper.Add(file);
+            _carDal.Update(car);
+            return new SuccessResult();
         }
     }
 }

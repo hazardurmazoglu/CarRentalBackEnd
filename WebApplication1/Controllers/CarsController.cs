@@ -144,6 +144,17 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpPost("addPreviewPhoto")]
+        public IActionResult Add([FromForm(Name = ("Image"))] IFormFile file, [FromForm] Car car)
+        {
+            var result = _carService.AddPreviewPhoto(file, car);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
 
 
     }
