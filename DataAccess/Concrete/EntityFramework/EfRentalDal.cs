@@ -25,6 +25,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  RentalId = rental.RentalId,
                                  CarId = rental.CarId,
                                  BrandName = brand.BrandName,
+                                 Description = car.Description,
                                  UserName = user.FirstName + " " + user.LastName,
                                  RentDate = rental.RentDate,
                                  ReturnDate = rental.ReturnDate
@@ -54,6 +55,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  RentalId = rental.RentalId,
                                  CarId = car.CarId,
                                  BrandName = brand.BrandName,
+                                 Description = car.Description,
                                  UserName = user.FirstName + " " + user.LastName,
                                  RentDate = rental.RentDate,
                                  ReturnDate = rental.ReturnDate
@@ -61,7 +63,40 @@ namespace DataAccess.Concrete.EntityFramework
 
                 return result.SingleOrDefault();
             }
+
         }
+        public List<RentalDetailDto> GetRentalDetailsByUserId(int id)
+        {
+            using (CarRentalContext context = new CarRentalContext())
+            {
+                var result = from rental in context.Rentals.Where(r => r.UserId == id)
+
+                             join car in context.Cars
+                                 on rental.CarId equals car.CarId
+
+                             join user in context.Users
+                                 on rental.UserId equals user.Id
+
+                             join brand in context.Brands
+                             on car.BrandId equals brand.BrandId
+
+                             select new RentalDetailDto
+                             {
+                                 RentalId = rental.RentalId,
+                                 CarId = car.CarId,
+                                 BrandName = brand.BrandName,
+                                 Description = car.Description,
+                                 UserName = user.FirstName + " " + user.LastName,
+                                 RentDate = rental.RentDate,
+                                 ReturnDate = rental.ReturnDate
+                             };
+
+                return result.ToList();
+            }
+
+        }
+
+
     }
 }
 
